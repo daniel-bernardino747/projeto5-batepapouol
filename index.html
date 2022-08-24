@@ -19,38 +19,39 @@
         </div>
 
         <div class="box-msg">
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            <div class="msg"></div>
-            
+            <div class="msg normal">
+                <p>
+                    <span class="msg-hour">(20:07:58)</span>
+                    <span class="msg-user">fulano para ciclano: </span>
+                    <span class="msg-text">Bom dia, seus feios! Como tá a vida de solteiro? A vida pobre? e a vida de corno?</span>
+                </p>
+            </div>
+            <!--  <div class="msg sistema">
+                <p>
+                    <span class="msg-hour">(20:07:58)</span>
+                    <span class="msg-user">fulano para ciclano: </span>
+                    <span class="msg-text">Bom dia, seus feios! Como tá a vida de solteiro? A vida pobre? e a vida de corno?</span>
+                </p>
+            </div>
+            <div class="msg privada">
+                <p>
+                    <span class="msg-hour">(20:07:58)</span>
+                    <span class="msg-user">fulano para ciclano: </span>
+                    <span class="msg-text">Bom dia, seus feios! Como tá a vida de solteiro? A vida pobre? e a vida de corno?</span>
+                </p>
+            </div> -->
         </div>
 
         <div class="bottom">
-            <p>Escreva aqui...</p>
-            <ion-icon name="paper-plane-outline"></ion-icon>
+            <input type="text" class="mensage" placeholder="Escreva aqui...">
+            <button onclick="sendMSM('.mensage')">
+                <ion-icon name='paper-plane-outline'></ion-icon>
+            </button>
         </div>
     </div>
-
-
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>

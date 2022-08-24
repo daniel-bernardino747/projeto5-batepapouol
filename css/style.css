@@ -11,7 +11,7 @@ body {
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-    line-height: 16px;
+    line-height: 18px;
 
     background: #F3F3F3;
 
@@ -43,9 +43,6 @@ body {
 .bottom {
     bottom: 0;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-
-    font-style: italic;
-    font-size: 18px;
 }
 
 .bottom ion-icon {
@@ -53,10 +50,53 @@ body {
 }
 
 .box-msg {
-    margin-top: 100px
+    margin-top: 100px;
+    width: 100%;
 }
+
 .msg {
-    height: 40px;
-    background: blue;
+    width: 100%;
+    min-height: 40px;
     margin: 6px 0px;
+    border-radius: 2px;
+
+    display: flex;
+    align-items: center;
+}
+
+.normal {
+    background: #FFFFFF;
+}
+
+.sistema {
+    background: #DCDCDC;
+}
+
+.privada {
+    background: #FFDEDE;
+}
+
+.msg-hour {
+    color: #AAAAAA;
+}
+
+.msg p {
+    padding: 10px 8px;
+}
+
+input[type='text'], input:focus {
+    width: 97%;
+    height: 50%;
+    font-style: italic;
+    font-size: 18px;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
+button {
+    border: 0px;
+    background: #FFFFFF;
+    cursor: pointer;
+
 }
