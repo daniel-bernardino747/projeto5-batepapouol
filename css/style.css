@@ -64,15 +64,15 @@ body {
     align-items: center;
 }
 
-.normal {
+.message {
     background: #FFFFFF;
 }
 
-.sistema {
+.status {
     background: #DCDCDC;
 }
 
-.privada {
+.private_message {
     background: #FFDEDE;
 }
 

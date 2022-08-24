@@ -1,18 +1,69 @@
 const nameInput = prompt('Qual o seu nome?');
 
-function makeGet(url) {
+
+
+
+
+
+
+
+function makeGet(type, url) {
 
     const promise = axios.get(url);
-    promise.then( deuCerto )
-    promise.catch( deuErrado )
+
+    if (type === 'allMSM') {
+        promise.then( downloadMSM )
+        promise.catch( deuErrado )
+    }
 }
 
-function makePost(url, body) {
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function makePost(type, url, body) {
+
     const promise = axios.post(url, body);
-    promise.then( deuCerto )
-    promise.catch( deuErrado )
+
+    if (type === 'cadastro') {
+
+        promise.then( function () {
+
+            makeGet('allMSM', "https://mock-api.driven.com.br/api/v6/uol/messages");
+
+            setInterval(estouOnline, 5000)
+        })
+        promise.catch( deuErrado )
+
+    } else if (type === 'msm'){
+
+        promise.then( deuCerto )
+        promise.catch( deuErrado )
+
+    } else if (type === 'none') {
+        return;
+    }
 }
+
+
+
+
+
+
+
+
+
 
 function deuCerto(answer) {
     console.log(answer);
@@ -24,14 +75,24 @@ function deuErrado(answer) {
     console.log(answer)
 }
 
-makePost("https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
 
-// setInterval(estouOnline, 5000);
 
+
+
+
+
+
+
+
+
+
+
+
+makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
 
 
 function estouOnline() {
-    makePost("https://mock-api.driven.com.br/api/v6/uol/status", {name: nameInput});
+    makePost('none', "https://mock-api.driven.com.br/api/v6/uol/status", {name: nameInput});
 }
 
 function sendMSM(classInput) {
@@ -44,15 +105,47 @@ function sendMSM(classInput) {
         type: "message"
     }
     
-    makePost("https://mock-api.driven.com.br/api/v6/uol/messages", body)
+    makePost('msm', "https://mock-api.driven.com.br/api/v6/uol/messages", body)
 
-    const allMessage = makeGet("https://mock-api.driven.com.br/api/v6/uol/messages");
-
-    console.log('all message: ', allMessage)
+    makeGet('allMSM', "https://mock-api.driven.com.br/api/v6/uol/messages");
 
     clearInput(text);
 }
 
+
+
+
+
+function createMSM(msm, number) {
+    const box = document.querySelector('.box-msg');
+
+    const blabla = `
+        <div class="msg ${msm.type}" id="msm${number}">
+            <p>
+                <span class="msg-hour">${msm.time}</span>
+                <span class="msg-user">${msm.from} para ${msm.to}: </span>
+                <span class="msg-text">${msm.text}</span>
+            </p>
+        </div>
+        `
+
+    box.innerHTML += blabla
+
+    const ble = document.getElementById(`msm${number}`)
+    ble.scrollIntoView();
+}
+
 function clearInput(element) {
     element.value = '';
+}
+
+function downloadMSM(allMessage) {
+    const mensagens = allMessage.data;
+    console.log('all message: ', allMessage.data[0])
+
+    for (let i = 0; i < mensagens.length; i++) {
+         createMSM(mensagens[i])
+
+    }
+
 }
