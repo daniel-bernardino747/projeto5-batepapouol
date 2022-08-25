@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,16 +11,63 @@
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
 </head>
+
 <body>
+
+
+    <div class="screen-dark hide"></div>
+    <div class="menu hide">
+        <div>
+            <h1>Escolha um contato para enviar mensagem:</h1>
+            <div class="options one">
+                <div onclick="select('op1', 'one')">
+                    <div>
+                        <ion-icon name="people"></ion-icon>
+                        <p>Todos</p>
+                    </div>
+                    <ion-icon class='green op1' name="checkmark-outline"></ion-icon>
+                </div>
+                <div onclick="select('op2', 'one')">
+                    <div>
+                        <ion-icon name="person-circle"></ion-icon>
+                        <p>João</p>
+                    </div>
+                    <ion-icon class='green op2' name="checkmark-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h1>Escolha a visibilidade:</h1>
+            <div class="options two">
+                <div onclick="select('op1', 'two')">
+                    <div>
+                        <ion-icon name="lock-open"></ion-icon>
+                        <p>Público</p>
+                    </div>
+                    <ion-icon class='green op1' name="checkmark-outline"></ion-icon>
+                </div>
+                <div onclick="select('op2', 'two')">
+                    <div>
+                        <ion-icon name="lock-closed"></ion-icon>
+                        <p>Reservadamente</p>
+                    </div>
+                    <ion-icon class='green op2' name="checkmark-outline"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <div class="screen">
 
         <div class="top">
-            <img src="./src/logo.png" alt="logo-uol"/>
-            <ion-icon name="people"></ion-icon>
+            <img src="./src/logo.png" alt="logo-uol" />
+            <ion-icon name="people" id="menu"></ion-icon>
         </div>
 
-        <div class="box-msg">
-        </div>
+        <div class="box-msg"></div>
 
         <div class="bottom">
             <input type="text" class="mensage" placeholder="Escreva aqui...">
@@ -28,9 +76,11 @@
             </button>
         </div>
     </div>
-    
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <script src="scripts.js"></script>
+    <!-- <script src="scripts.js"></script> -->
+    <script src="script.js"></script>
 </body>
+
 </html>

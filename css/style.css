@@ -19,6 +19,7 @@ body {
 
 .top, .bottom {
     position: fixed;
+    z-index: 1;
     left: 0;
 
     width: 100%;
@@ -100,4 +101,89 @@ button {
     background: #FFFFFF;
     cursor: pointer;
 
+}
+
+.screen-dark {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 100%;
+    height: 667px;
+
+    background: rgba(0, 0, 0, 0.6);
+
+    overflow: hidden;
+    max-width: 100%;
+    transition: max-width 1s ease-in-out;
+}
+
+.menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    width: 80%;
+    height: 667px;
+    background-color: #FFFFFF;
+
+    overflow: hidden;
+    max-width: 80%;
+    transition: max-width 1s ease-in-out;
+}
+.menu h1 {
+    padding: 0 100px;
+    margin: 25px 0;
+
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.options {
+    line-height: 8px;
+    font-size: 16px;
+}
+
+.options div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+.options div div {
+    margin: 0 0;
+}
+
+.options div div ion-icon {
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.hide {
+    max-width: 0;
+    pointer-events: none;
+}
+
+.display-on {
+    display: flex;
+    align-items: center;
+}
+
+.green {
+    color: #28BB25;
+    font-size: 20px;
+    margin: 0 10px;
+    display: none;
+}
+
+.selecionado {
+    display: initial;
 }

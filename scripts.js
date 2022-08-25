@@ -1,5 +1,7 @@
 const nameInput = prompt('Qual o seu nome?');
 
+makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
+
 function makeGet(type, url) {
 
     const promise = axios.get(url);
@@ -40,14 +42,12 @@ function startAll() {
 function deuCerto(answer) {
     console.log(answer);
     return answer;
-}
+} 
 
 function deuErrado(answer) {
     alert('Não funcionou');
     console.log(answer)
 }
-
-makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
 
 function estouOnline() {
     makePost('none', "https://mock-api.driven.com.br/api/v6/uol/status", {name: nameInput});
@@ -61,9 +61,9 @@ function sendMSM(classInput) {
         to: "Todos",
         text: text.value,
         type: "message"
-    }
+    };
     
-    makePost('msm', "https://mock-api.driven.com.br/api/v6/uol/messages", body)
+    makePost('msm', "https://mock-api.driven.com.br/api/v6/uol/messages", body);
 
     makeGet('allMSM', "https://mock-api.driven.com.br/api/v6/uol/messages");
 
@@ -105,5 +105,23 @@ function downloadMSM(allMessage) {
          createMSM(mensagens[i], i)
 
     }
+}
 
+const blabla = document.querySelector('.screen-dark');
+const blable = document.querySelector('.menu');
+const icon = document.getElementById('menu');
+
+
+document.documentElement.onclick = function(event){
+
+    if (event.target === icon) {
+
+        blable.classList.remove("hide");
+        blabla.classList.remove("hide");
+        
+    } else if (event.target === blabla){
+
+        blable.classList.add("hide");
+        blabla.classList.add("hide");
+    }
 }
