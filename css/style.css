@@ -222,12 +222,16 @@ button {
     height: 100%;
 }
 
-.login img {
+.login .logo {
     position: absolute;
     top: 15%;
     left: center;
     height: 92px;
     width: 130px;
+}
+
+.load {
+    width: 70px;
 }
 
 .login input {

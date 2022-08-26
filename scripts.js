@@ -2,12 +2,22 @@ let nameInput = '';
 function start() {
     nameInput = document.getElementById('name').value;
     console.log(nameInput)
-    const login = document.querySelector('.login')
-    login.classList.remove('in-center')
-    login.classList.add('hidden')
-
+    const login = document.querySelector('.login');
+    const box = document.querySelector('.box-input');
+    const loading = document.querySelector('.load');
+    box.classList.remove('in-center')
+    box.classList.add('hidden');
+    loading.classList.remove('hidden');
     makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
+    
+    setTimeout(() => {
+        login.classList.remove('in-center')
+        login.classList.add('hidden')
+    }, 3000);
+
+
 }
+
 
 
 let nameToSendMessage = 'Todos';
@@ -96,7 +106,7 @@ function sendMSM(classInput) {
 function createMSM(msm, number) {
     const box = document.querySelector('.box-msg');
     
-    if (number === 1) {
+    if (number === 0) {
         box.innerHTML = '';
     }
 
@@ -166,15 +176,15 @@ function downloadUsers(allUsers) {
     }
 }
 
-
-
-
-
-
-
-
-
-
+document.addEventListener("keypress", function(e) {
+    if(e.key === 'Enter') {
+    
+        let btn = document.getElementById("button-enter");
+      
+      btn.click();
+    
+    }
+});
 
 
 const blabla = document.querySelector('.screen-dark');

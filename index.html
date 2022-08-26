@@ -15,9 +15,14 @@
 <body>
 
     <div class="login in-center">
-        <img src="./src/logo.png" alt="">
-        <input id="name"type="text" placeholder="Digite seu nome">
-        <button onclick="start()">Entrar</button>
+        <img src="./src/logo.png" class='logo'alt="">
+        <div class="in-center box-input">
+            <input id="name"type="text" placeholder="Digite seu nome">
+            <button onclick="start()">Entrar</button>
+        </div>
+        <div class='load hidden'>
+            <img class='load' src="./src/loading-loader.gif" alt="">
+        </div>
     </div>
 
 
@@ -65,7 +70,7 @@
                 <input type="text" class="mensage" placeholder="Escreva aqui...">
                 <p id="textInputAdd" class="hidden">Enviando para Todos (reservadamente)</p>
             </div>
-            <button onclick="sendMSM('.mensage')">
+            <button id="button-enter" onclick="sendMSM('.mensage')">
                 <ion-icon name='paper-plane-outline'></ion-icon>
             </button>
         </div>
