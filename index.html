@@ -19,36 +19,21 @@
     <div class="menu hide">
         <div>
             <h1>Escolha um contato para enviar mensagem:</h1>
-            <div class="options one">
-                <div onclick="select('op1', 'one')">
-                    <div>
-                        <ion-icon name="people"></ion-icon>
-                        <p>Todos</p>
-                    </div>
-                    <ion-icon class='green op1' name="checkmark-outline"></ion-icon>
-                </div>
-                <div onclick="select('op2', 'one')">
-                    <div>
-                        <ion-icon name="person-circle"></ion-icon>
-                        <p>João</p>
-                    </div>
-                    <ion-icon class='green op2' name="checkmark-outline"></ion-icon>
-                </div>
-            </div>
+            <div class="options one"></div>
         </div>
         <div>
             <h1>Escolha a visibilidade:</h1>
             <div class="options two">
                 <div onclick="select('op1', 'two')">
                     <div>
-                        <ion-icon name="lock-open"></ion-icon>
+                        <ion-icon id="public" name="lock-open"></ion-icon>
                         <p>Público</p>
                     </div>
                     <ion-icon class='green op1' name="checkmark-outline"></ion-icon>
                 </div>
                 <div onclick="select('op2', 'two')">
                     <div>
-                        <ion-icon name="lock-closed"></ion-icon>
+                        <ion-icon id="private" name="lock-closed"></ion-icon>
                         <p>Reservadamente</p>
                     </div>
                     <ion-icon class='green op2' name="checkmark-outline"></ion-icon>
@@ -79,8 +64,8 @@
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-    <!-- <script src="scripts.js"></script> -->
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
+    <script src="scrip"></script>
 </body>
 
 </html>

@@ -1,8 +1,6 @@
 const blabla = document.querySelector('.screen-dark');
 const blable = document.querySelector('.menu');
 const icon = document.getElementById('menu');
-const filhos = document.querySelectorAll('.green');
-console.log(filhos);
 
 function select(element, family) {
     const selected = document.querySelector(`.${family} .selecionado`);
