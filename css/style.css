@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 * {
     box-sizing: border-box;
@@ -50,6 +50,16 @@ body {
     font-size: 26px;
 }
 
+#textInputAdd {
+    position: relative;
+    top: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    pointer-events: none;
+    color: #505050;
+}
+
 .box-msg {
     margin-top: 100px;
     margin-bottom: 90px;
@@ -94,6 +104,8 @@ input[type='text'], input:focus {
     box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
+    color: #000000;
+    
 }
 
 button {
@@ -194,4 +206,58 @@ button {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 100%;
+}
+
+.login img {
+    position: absolute;
+    top: 15%;
+    left: center;
+    height: 92px;
+    width: 130px;
+}
+
+.login input {
+    width: 261px;
+    height: 54px;
+    text-align: center;
+
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+
+    margin: 20px;
+}
+
+.login button {
+    width: 109px;
+    height: 45px;
+
+    background-color: black;
+    background: #E7E7E7;
+    border-radius: 9px;
+}
+
+.login ::-webkit-input-placeholder  { 
+    text-align: center;     
+}
+
+.in-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }

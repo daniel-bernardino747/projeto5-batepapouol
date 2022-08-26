@@ -14,6 +14,12 @@
 
 <body>
 
+    <div class="login in-center">
+        <img src="./src/logo.png" alt="">
+        <input id="name"type="text" placeholder="Digite seu nome">
+        <button onclick="start()">Entrar</button>
+    </div>
+
 
     <div class="screen-dark hide"></div>
     <div class="menu hide">
@@ -24,14 +30,14 @@
         <div>
             <h1>Escolha a visibilidade:</h1>
             <div class="options two">
-                <div onclick="select('op1', 'two')">
+                <div data-identifier="visibility" onclick="select('op1', 'two')">
                     <div>
                         <ion-icon id="public" name="lock-open"></ion-icon>
                         <p>Público</p>
                     </div>
                     <ion-icon class='green op1' name="checkmark-outline"></ion-icon>
                 </div>
-                <div onclick="select('op2', 'two')">
+                <div data-identifier="visibility" onclick="select('op2', 'two')">
                     <div>
                         <ion-icon id="private" name="lock-closed"></ion-icon>
                         <p>Reservadamente</p>
@@ -55,7 +61,10 @@
         <div class="box-msg"></div>
 
         <div class="bottom">
-            <input type="text" class="mensage" placeholder="Escreva aqui...">
+            <div>
+                <input type="text" class="mensage" placeholder="Escreva aqui...">
+                <p id="textInputAdd" class="hidden">Enviando para Todos (reservadamente)</p>
+            </div>
             <button onclick="sendMSM('.mensage')">
                 <ion-icon name='paper-plane-outline'></ion-icon>
             </button>

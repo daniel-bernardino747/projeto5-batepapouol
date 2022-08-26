@@ -1,7 +1,18 @@
-const nameInput = prompt('Qual o seu nome?');
-let nameToSendMessage = 'Todos';
+let nameInput = '';
+function start() {
+    nameInput = document.getElementById('name').value;
+    console.log(nameInput)
+    const login = document.querySelector('.login')
+    login.classList.remove('in-center')
+    login.classList.add('hidden')
 
-makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
+    makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
+}
+
+
+let nameToSendMessage = 'Todos';
+let statusMessage = 'message';
+
 
 function makeGet(type, url) {
 
@@ -43,8 +54,11 @@ function startAll() {
     setInterval(() => {
         makeGet('allMSM', "https://mock-api.driven.com.br/api/v6/uol/messages");
     }, 3000);
+
+    setInterval(() => {
+        makeGet('userOnline', 'https://mock-api.driven.com.br/api/v6/uol/participants');
+    }, 10000);
     
-    makeGet('userOnline', 'https://mock-api.driven.com.br/api/v6/uol/participants');
     setInterval(estouOnline, 5000)
 }
 
@@ -69,7 +83,7 @@ function sendMSM(classInput) {
         from: nameInput,
         to: nameToSendMessage,
         text: text.value,
-        type: "message"
+        type: statusMessage
     };
     
     makePost('msm', "https://mock-api.driven.com.br/api/v6/uol/messages", body);
@@ -118,7 +132,7 @@ function insertUserInMenu(users, number) {
     }
 
     const blabla = `
-    <div onclick="select('op${number}', 'one')">
+    <div data-identifier="participant" onclick="select('op${number}', 'one')">
         <div>
             <ion-icon name="person-circle"></ion-icon>
             <p>${users.name}</p>
@@ -136,7 +150,6 @@ function clearInput(element) {
 
 function downloadMSM(allMessage) {
     const mensagens = allMessage.data;
-    console.log('all message: ', allMessage.data[0])
 
     for (let i = 0; i < mensagens.length; i++) {
          createMSM(mensagens[i], i)
@@ -168,6 +181,8 @@ const blabla = document.querySelector('.screen-dark');
 const blibli = document.querySelector('.box-msg');
 const blable = document.querySelector('.menu');
 const icon = document.getElementById('menu');
+const textInInputAdd = document.getElementById('textInputAdd');
+
 
 function select(element, family) {
     const selected = document.querySelector(`.${family} .selecionado`);
@@ -184,10 +199,22 @@ function select(element, family) {
         const select = document.querySelector(`.${family} .selecionado`);
         const pai = select.parentNode
         nameToSendMessage = pai.innerText;
+        textInInputAdd.innerHTML = `Enviando para ${nameToSendMessage} (reservadamente)`;
     } else if (family === 'two') {
         const nhami = document.querySelector(`.${family} .selecionado`);
-        const nhamii = nhami.parentNode
-        console.log(nhamii, nhamii.id)
+        const nhamii = nhami.parentNode.innerText
+        if (nhamii === 'Público') {
+            statusMessage = 'message';
+            textInInputAdd.classList.remove('selecionado');
+            textInInputAdd.classList.add('hidden');
+
+        } else if (nhamii === 'Reservadamente') {
+            statusMessage = 'private_message';
+            
+            textInInputAdd.classList.remove('hidden');
+            textInInputAdd.classList.add('selecionado');
+            console.log(textInInputAdd);
+        }
     }
 
 }
