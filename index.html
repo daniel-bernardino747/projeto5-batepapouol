@@ -23,7 +23,7 @@
 
         <div class="js-login__input u-total-centralized">
             <input type="text" class="c-login__input js-login__name" placeholder="Digite seu nome" />
-            <button class="c-login__button" onclick="registerAndLogin()">Entrar</button>
+            <button class="c-login__button" id="js-login__button" onclick="registerAndLogin()">Entrar</button>
         </div>
 
         <div class="js-login__loader is-hidden">
@@ -91,10 +91,10 @@
 
             <div>
                 <input type="text" class="c-screen_input" placeholder="Escreva aqui...">
-                <p id="js-screen__input-value" class="c-screen__input-value is-hidden">Enviando para Todos (reservadamente)</p>
+                <p id="js-screen__input-description" class="c-screen__input-value is-hidden">Enviando para Todos (reservadamente)</p>
             </div>
 
-            <button class="c-screen__button" id="js-screen__button" onclick="sendMSM('.c-screen_input')">
+            <button class="c-screen__button" id="js-screen__button" onclick="sendMessage('.c-screen_input')">
                 <ion-icon name="paper-plane-outline"></ion-icon>
             </button>
 

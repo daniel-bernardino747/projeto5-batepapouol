@@ -1,250 +1,237 @@
-let nameInput = '';
-function registerAndLogin() {
-    nameInput = document.querySelector('.js-login__name').value;
-    console.log(nameInput)
-    const login = document.querySelector('.js-login');
-    const box = document.querySelector('.js-login__input');
-    const loading = document.querySelector('.js-login__loader');
-    box.classList.remove('u-total-centralized')
-    box.classList.add('is-hidden');
-    loading.classList.remove('is-hidden');
-    makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
-    
-    setTimeout(() => {
-        login.classList.remove('u-total-centralized')
-        login.classList.add('is-hidden')
-    }, 3000);
+const darkBackgroundMenu = document.querySelector('.js-menu__background');
+const chat = document.querySelector('.js-screen__chat');
+const menu = document.querySelector('.js-menu');
+const icon = document.getElementById('js-screen__icon-menu');
+const descriptionInputInChat = document.getElementById('js-screen__input-description');
 
-
-}
-
-
-
+let userName = '';
 let nameToSendMessage = 'Todos';
 let statusMessage = 'message';
 
 
-function makeGet(type, url) {
+
+function makeGet(description, url) {
 
     const promise = axios.get(url);
 
-    if (type === 'allMSM') {
+    if (description === 'allMessages') {
 
-        promise.then( downloadMSM )
-        promise.catch( deuErrado )
+        promise.then( downloadMessages )
+        promise.catch( errorCorretions )
 
-    } else if (type === 'userOnline') {
+    } else if (description === 'usersOnline') {
 
-        promise.then( downloadUsers )
-        promise.catch( deuErrado )
+        promise.then( downloadUsersOnline )
+        promise.catch( errorCorretions )
     }
 }
 
-function makePost(type, url, body) {
+function makePost(description, url, body) {
 
     const promise = axios.post(url, body);
 
-    if (type === 'cadastro') {
+    if (description === 'signInServer') {
 
-        promise.then( startAll )
-        promise.catch( deuErrado )
+        promise.then( getMessagesAndUsers )
+        promise.catch( errorCorretions )
 
-    } else if (type === 'msm'){
+    } else if (description === 'sendMessage'){
 
-        promise.then( deuCerto )
-        promise.catch( deuErrado )
+        promise.then( (answer) => console.log(answer))
+        promise.catch( errorCorretions )
 
-    } else if (type === 'none') {
-        return;
-    }
+    } else if (description === 'none') { return }
 }
 
-function startAll() {
+function registerAndLogin() {
 
-    setInterval(() => {
-        makeGet('allMSM', "https://mock-api.driven.com.br/api/v6/uol/messages");
+    const screenLogin = document.querySelector('.js-login');
+    const inputLogin = document.querySelector('.js-login__input');
+    const loaderLogin = document.querySelector('.js-login__loader');
+
+    userName = document.querySelector('.js-login__name').value;
+
+    inputLogin.classList.remove('u-total-centralized')
+    inputLogin.classList.add('is-hidden');
+
+    loaderLogin.classList.remove('is-hidden');
+
+    makePost('signInServer', 'https://mock-api.driven.com.br/api/v6/uol/participants', {name: userName});
+    
+    setTimeout(() => {
+        screenLogin.classList.remove('u-total-centralized');
+        screenLogin.classList.add('is-hidden');
     }, 3000);
+}
+
+function getMessagesAndUsers() {
 
     setInterval(() => {
-        makeGet('userOnline', 'https://mock-api.driven.com.br/api/v6/uol/participants');
+        makeGet('allMessages', 'https://mock-api.driven.com.br/api/v6/uol/messages');
+    }, 3000);
+    
+    setInterval(() => {
+        makeGet('usersOnline', 'https://mock-api.driven.com.br/api/v6/uol/participants');
     }, 10000);
     
-    setInterval(estouOnline, 5000)
+    setInterval(() => {
+        makePost('none', 'https://mock-api.driven.com.br/api/v6/uol/status', {name: userName});
+    }, 5000)
 }
 
-function deuCerto(answer) {
-    console.log(answer);
-    return answer;
-} 
-
-function deuErrado(answer) {
+function errorCorretions(answer) {
     alert('Não funcionou');
     console.log(answer)
 }
 
-function estouOnline() {
-    makePost('none', "https://mock-api.driven.com.br/api/v6/uol/status", {name: nameInput});
-}
-
-function sendMSM(classInput) {
-    const text = document.querySelector(classInput);
+function sendMessage(inputToSendMessage) {
+    const valueInMessage = document.querySelector(inputToSendMessage);
 
     body = {
-        from: nameInput,
+        from: userName,
         to: nameToSendMessage,
-        text: text.value,
+        text: valueInMessage.value,
         type: statusMessage
     };
     
-    makePost('msm', "https://mock-api.driven.com.br/api/v6/uol/messages", body);
+    makePost('sendMessage', 'https://mock-api.driven.com.br/api/v6/uol/messages', body);
 
-    makeGet('allMSM', "https://mock-api.driven.com.br/api/v6/uol/messages");
+    makeGet('allMessages', 'https://mock-api.driven.com.br/api/v6/uol/messages');
 
-    clearInput(text);
+    valueInMessage.value = '';
 }
 
-function createMSM(msm, number) {
-    const box = document.querySelector('.js-screen__chat');
-    let blabla = '';
+function renderMessage(message, number) {
+    const screenChat = document.querySelector('.js-screen__chat');
+    let templateMessage = '';
     
     if (number === 0) {
-        box.innerHTML = '';
+        screenChat.innerHTML = '';
     }
 
-    if (msm.type === 'status') {
-        blabla = `
-        <div class="c-screen__message u-${msm.type}" id="msm${number}">
+    if (message.type === 'status') {
+        templateMessage = `
+        <div class="c-screen__message u-${message.type}" id="js-message${number}">
             <p>
-                <span class="c-screen__hour">${msm.time}</span>
-                <span><b>${msm.from}</b></span>
-                <span>${msm.text}</span>
+                <span class="c-screen__hour">${message.time}</span>
+                <span><b>${message.from}</b></span>
+                <span>${message.text}</span>
             </p>
         </div>
         `    
     } else {
-        blabla = `
-        <div class="c-screen__message u-${msm.type}" id="msm${number}">
+        templateMessage = `
+        <div class="c-screen__message u-${message.type}" id="js-message${number}">
             <p>
-                <span class="c-screen__hour">${msm.time}</span>
-                <span><b>${msm.from}</b> para <b>${msm.to}</b>: </span>
-                <span>${msm.text}</span>
+                <span class="c-screen__hour">${message.time}</span>
+                <span><b>${message.from}</b> para <b>${message.to}</b>: </span>
+                <span>${message.text}</span>
             </p>
         </div>
         `
     }
 
-    box.innerHTML += blabla
+    screenChat.innerHTML += templateMessage
 
-    const ble = document.getElementById(`msm${number}`)
-    ble.scrollIntoView();
+    const lastMessageInScreen = document.getElementById(`js-message${number}`)
+    lastMessageInScreen.scrollIntoView();
 }
 
 function insertUserInMenu(users, number) {
-    const menu = document.querySelector('.js-menu__users');
+    const usersMenu = document.querySelector('.js-menu__users');
 
     if (number === 0) {
-        menu.innerHTML = `
+        usersMenu.innerHTML = `
         <div onclick="selectedMenuItem('js-optionAll', 'js-menu__users')">
             <div>
                 <ion-icon name="people"></ion-icon>
                 <p>Todos</p>
             </div>
-            <ion-icon class='c-menu__icon is-hidden js-optionAll is-selected' name="checkmark-outline"></ion-icon>
+            <ion-icon class="c-menu__icon is-hidden js-optionAll is-selected" name="checkmark-outline"></ion-icon>
         </div>
         `;
     }
 
-    const blabla = `
+    usersMenu.innerHTML += `
     <div data-identifier="participant" onclick="selectedMenuItem('js-option${number}', 'js-menu__users')">
         <div>
             <ion-icon name="person-circle"></ion-icon>
             <p>${users.name}</p>
         </div>
-        <ion-icon class='c-menu__icon is-hidden js-option${number}' name="checkmark-outline"></ion-icon>
+        <ion-icon class="c-menu__icon is-hidden js-option${number}" name="checkmark-outline"></ion-icon>
     </div>
     `;
-
-    menu.innerHTML += blabla;
 }
 
-function clearInput(element) {
-    element.value = '';
-}
+function downloadMessages(allMessages) {
+    const listMessages = allMessages.data;
 
-function downloadMSM(allMessage) {
-    const mensagens = allMessage.data;
-
-    for (let i = 0; i < mensagens.length; i++) {
-         createMSM(mensagens[i], i)
+    for (let i = 0; i < listMessages.length; i++) {
+         renderMessage(listMessages[i], i)
 
     }
 }
 
-function downloadUsers(allUsers) {
-    const users = allUsers.data;
-    console.log('usuários online : ',allUsers, users);
+function downloadUsersOnline(allUsers) {
+    const listUsers = allUsers.data;
 
-    for (let i = 0; i < users.length; i++) {
-        insertUserInMenu(users[i], i);
+    for (let i = 0; i < listUsers.length; i++) {
+        insertUserInMenu(listUsers[i], i);
     }
 }
 
-document.addEventListener("keypress", function(e) {
+document.addEventListener('keypress', function(e) {
+    
     if(e.key === 'Enter') {
-    
-        let btn = document.getElementById("js-screen__button");
-      
-      btn.click();
-    
+        const screenLogin = document.querySelector('.js-login').classList;
+        const isVisible = screenLogin.value.includes('is-hidden');
+        let buttonEnter = '';
+
+        if (!isVisible) {
+            buttonEnter = document.getElementById('js-login__button');
+            buttonEnter.click();
+        } else {
+            buttonEnter = document.getElementById('js-screen__button');
+            buttonEnter.click();
+        }
+
     }
 });
 
-
-const blabla = document.querySelector('.js-menu__background');
-const blibli = document.querySelector('.js-screen__chat');
-const blable = document.querySelector('.js-menu');
-const icon = document.getElementById('js-screen__icon-menu');
-const textInInputAdd = document.getElementById('js-screen__input-value');
-
-
-function selectedMenuItem(element, family) {
-    const selected = document.querySelector(`.${family} .is-selected`);
+function selectedMenuItem(checkmarkIcon, family) {
+    const isSelected = document.querySelector(`.${family} .is-selected`);
     
-    if (selected !== null) {
-        selected.classList.remove("is-selected");
+    if (isSelected !== null) {
+        isSelected.classList.remove('is-selected');
     }
     
-    const selector = `.${family} .${element}`;
-    const button = document.querySelector(selector);
-    button.classList.add('is-selected');
+    const itemSelected = document.querySelector(`.${family} .${checkmarkIcon}`);
+    itemSelected.classList.add('is-selected');
 
     if (family === 'js-menu__users') {
 
-        const select = document.querySelector(`.${family} .is-selected`);
-        const pai = select.parentNode
+        const parentSelected = document.querySelector(`.${family} .is-selected`).parentNode;
 
-        nameToSendMessage = pai.innerText;
-        textInInputAdd.innerHTML = `Enviando para ${nameToSendMessage} (reservadamente)`;
+        nameToSendMessage = parentSelected.innerText;
+        descriptionInputInChat.innerHTML = `Enviando para ${nameToSendMessage} (reservadamente)`;
 
     } else if (family === 'js-menu__visibility') {
 
-        const nhami = document.querySelector(`.${family} .is-selected`);
-        const nhamii = nhami.parentNode.innerText
+        const messageVisibleItem = document.querySelector(`.${family} .is-selected`).parentNode;
 
-        if (nhamii === 'Público') {
+        if (messageVisibleItem.innerText === 'Público') {
 
             statusMessage = 'message';
 
-            textInInputAdd.classList.remove('is-selected');
-            textInInputAdd.classList.add('is-hidden');
+            descriptionInputInChat.classList.remove('is-selected');
+            descriptionInputInChat.classList.add('is-hidden');
 
-        } else if (nhamii === 'Reservadamente') {
+        } else if (messageVisibleItem.innerText === 'Reservadamente') {
 
             statusMessage = 'private_message';
             
-            textInInputAdd.classList.remove('is-hidden');
-            textInInputAdd.classList.add('is-selected');
-            console.log(textInInputAdd);
+            descriptionInputInChat.classList.remove('is-hidden');
+            descriptionInputInChat.classList.add('is-selected');
         }
     }
 
@@ -254,14 +241,14 @@ document.documentElement.onclick = function(event){
 
     if (event.target === icon) {
 
-        blable.classList.remove("is-shrunken");
-        blabla.classList.remove("is-shrunken");
-        blibli.classList.add('is-freezed');
+        menu.classList.remove('is-shrunken');
+        darkBackgroundMenu.classList.remove('is-shrunken');
+        chat.classList.add('is-freezed');
         
-    } else if (event.target === blabla){
+    } else if (event.target === darkBackgroundMenu){
 
-        blable.classList.add("is-shrunken");
-        blabla.classList.add("is-shrunken");
-        blibli.classList.remove('is-freezed');
+        menu.classList.add('is-shrunken');
+        darkBackgroundMenu.classList.add('is-shrunken');
+        chat.classList.remove('is-freezed');
     }
 }
