@@ -11,6 +11,9 @@ Durante o decorrer deste readme, irei mostrar os detalhes do código, facilitand
 Sem mais delongas:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 09299f58de006c759fb228d9d656119381669f73
 <details><summary><h1>Gerais</h1></summary>
 
 <p>
@@ -102,8 +105,11 @@ b { font-weight: 700; }
 </p>
 </details>
 
+<<<<<<< HEAD
 =======
 >>>>>>> 74f293670b24386a33a15d2b29b2260cdbaa49c9
+=======
+>>>>>>> 09299f58de006c759fb228d9d656119381669f73
 <details><summary><h1>Tela de login</h1></summary>
 
 <p>
@@ -437,6 +443,7 @@ Esse menu contém todos os usuários online, atualizando a cada 10s e as opçõe
 /* ainda não adicionado */
 ~~~
 <<<<<<< HEAD
+<<<<<<< HEAD
 </p>
 </details>
 =======
@@ -528,3 +535,7 @@ b { font-weight: 700; }
 /* ainda não adicionado */
 ~~~
 >>>>>>> 74f293670b24386a33a15d2b29b2260cdbaa49c9
+=======
+</p>
+</details>
+>>>>>>> 09299f58de006c759fb228d9d656119381669f73
