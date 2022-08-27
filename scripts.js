@@ -80,8 +80,30 @@ function getMessagesAndUsers() {
 }
 
 function errorCorretions(answer) {
-    alert('Não funcionou');
-    console.log(answer)
+
+    const errorURL = answer.response.request.responseURL
+    const codeStatusError = answer.response.status
+
+    if (errorURL === 'https://mock-api.driven.com.br/api/v6/uol/participants') {
+
+        switch (codeStatusError) {
+            case 400:
+                alert('Insira um nome válido para entrar no chat. \n\nIsso acontece quando você não digita algo ou quando o nome digitado já é utilizado, nesse caso, utilize outro nome. \n\nPara mais informações, consulte nossa equipe.');
+                break;
+            default:
+                alert('infelizmente tivemos um problema.');
+        }
+
+    } else if (errorURL === 'https://mock-api.driven.com.br/api/v6/uol/messages') {
+
+        switch (codeStatusError) {
+            case 400:
+                alert('Você precisa digitar algo para enviar uma mensagem.');
+                break;
+            default:
+                alert('infelizmente tivemos um problema.');
+        }
+    }
 }
 
 function sendMessage(inputToSendMessage) {
@@ -99,6 +121,22 @@ function sendMessage(inputToSendMessage) {
     makeGet('allMessages', 'https://mock-api.driven.com.br/api/v6/uol/messages');
 
     valueInMessage.value = '';
+}
+
+function downloadMessages(allMessages) {
+    const listMessages = allMessages.data;
+
+    for (let i = 0; i < listMessages.length; i++) {
+         renderMessage(listMessages[i], i)
+    }
+}
+
+function downloadUsersOnline(allUsers) {
+    const listUsers = allUsers.data;
+
+    for (let i = 0; i < listUsers.length; i++) {
+        renderUserInMenu(listUsers[i], i);
+    }
 }
 
 function renderMessage(message, number) {
@@ -137,7 +175,7 @@ function renderMessage(message, number) {
     lastMessageInScreen.scrollIntoView();
 }
 
-function insertUserInMenu(users, number) {
+function renderUserInMenu(users, number) {
     const usersMenu = document.querySelector('.js-menu__users');
 
     if (number === 0) {
@@ -161,23 +199,6 @@ function insertUserInMenu(users, number) {
         <ion-icon class="c-menu__icon is-hidden js-option${number}" name="checkmark-outline"></ion-icon>
     </div>
     `;
-}
-
-function downloadMessages(allMessages) {
-    const listMessages = allMessages.data;
-
-    for (let i = 0; i < listMessages.length; i++) {
-         renderMessage(listMessages[i], i)
-
-    }
-}
-
-function downloadUsersOnline(allUsers) {
-    const listUsers = allUsers.data;
-
-    for (let i = 0; i < listUsers.length; i++) {
-        insertUserInMenu(listUsers[i], i);
-    }
 }
 
 document.addEventListener('keypress', function(e) {
@@ -234,7 +255,6 @@ function selectedMenuItem(checkmarkIcon, family) {
             descriptionInputInChat.classList.add('is-selected');
         }
     }
-
 }
 
 document.documentElement.onclick = function(event){
