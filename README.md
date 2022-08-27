@@ -10,8 +10,9 @@ Durante o decorrer deste readme, irei mostrar os detalhes do código, facilitand
 
 Sem mais delongas:
 
-## Tela de login
+<details><summary>Tela de login</summary>
 
+<p>
 Uma interface que possui um input e um botão, perguntando e conferindo se o nome do usuário é válido para aquele chat. Logo depois, há uma tela de loading de 5s antes de entrar no chat.
 
 #### HTML
@@ -83,6 +84,9 @@ Uma interface que possui um input e um botão, perguntando e conferindo se o nom
 ~~~javascript
 /* ainda não adicionado */
 ~~~
+</p>
+</details>
+
 ## Chat
 
 Possui um topo fixo com a logo e menu. Além disso, todas as 100 últimas mensagens do servidor são puxadas e renderizadas na tela, mas você não conseguirá ver mensagens privadas que não foram destinadas a você.
