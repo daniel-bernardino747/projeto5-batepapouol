@@ -10,7 +10,7 @@ Durante o decorrer deste readme, irei mostrar os detalhes do código, facilitand
 
 Sem mais delongas:
 
-<details><summary><h1>Gerais</h1></summary>
+<details><summary><h2>Gerais</h2></summary>
 
 <p>
 
@@ -101,7 +101,7 @@ b { font-weight: 700; }
 </p>
 </details>
 
-<details><summary><h1>Tela de login</h1></summary>
+<details><summary><h2>Tela de login</h2></summary>
 
 <p>
 Uma interface que possui um input e um botão, perguntando e conferindo se o nome do usuário é válido para aquele chat. Logo depois, há uma tela de loading de 5s antes de entrar no chat.
@@ -178,7 +178,7 @@ Uma interface que possui um input e um botão, perguntando e conferindo se o nom
 </p>
 </details>
 
-<details><summary><h1>Chat</h1></summary>
+<details><summary><h2>Chat</h2></summary>
 
 <p>
 
@@ -302,7 +302,7 @@ Possui um topo fixo com a logo e menu. Além disso, todas as 100 últimas mensag
 </p>
 </details>
 
-<details><summary><h1>Menu</h1></summary>
+<details><summary><h2>Menu</h2></summary>
 
 <p>
 
