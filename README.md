@@ -10,6 +10,7 @@ Durante o decorrer deste readme, irei mostrar os detalhes do código, facilitand
 
 Sem mais delongas:
 
+<<<<<<< HEAD
 <details><summary><h1>Gerais</h1></summary>
 
 <p>
@@ -101,6 +102,8 @@ b { font-weight: 700; }
 </p>
 </details>
 
+=======
+>>>>>>> 74f293670b24386a33a15d2b29b2260cdbaa49c9
 <details><summary><h1>Tela de login</h1></summary>
 
 <p>
@@ -433,5 +436,95 @@ Esse menu contém todos os usuários online, atualizando a cada 10s e as opçõe
 ~~~javascript
 /* ainda não adicionado */
 ~~~
+<<<<<<< HEAD
 </p>
 </details>
+=======
+
+## Gerais
+
+Algumas partes do código que não estão dependentes dos próximos títulos. Como, por exemplo, utilitários CSS.
+
+#### HTML
+~~~html
+<!-- configurações da página -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bate-papo UOL</title>
+
+<!-- Importações de estilos -->
+<link rel="stylesheet" href="./css/reset.css" />
+<link rel="stylesheet" href="./css/style.css" />
+
+<!-- axios -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<!-- icons -->
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+
+<!-- javascripts -->
+<script src="scripts.js"></script>
+~~~
+#### CSS
+~~~css
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #F3F3F3;
+    width: 375px;
+    
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+button {
+    background: #FFFFFF;
+    border: 0px;
+    cursor: pointer;
+}
+
+b { font-weight: 700; }
+
+.u-total-centralized {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.u-message { background: #FFFFFF; }
+
+.u-private_message { background: #FFDEDE; }
+
+.u-status { background: #DCDCDC; }
+
+.is-freezed {
+    position: fixed;
+    top: 0;
+
+    height: 100%;
+    width: 100%;
+    
+    overflow: hidden;
+}
+
+.is-hidden { display: none; }
+
+.is-selected { display: initial !important; }
+
+.is-shrunken { max-width: 0; }
+~~~
+#### Javascript
+~~~javascript
+/* ainda não adicionado */
+~~~
+>>>>>>> 74f293670b24386a33a15d2b29b2260cdbaa49c9
