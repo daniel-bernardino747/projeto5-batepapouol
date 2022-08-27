@@ -13,9 +13,19 @@ body {
     font-size: 14px;
     line-height: 18px;
 
-
     background: #F3F3F3;
 
+}
+
+button {
+    border: 0px;
+    background: #FFFFFF;
+    cursor: pointer;
+
+}
+
+b {
+    font-weight: 700;
 }
 
 .c-screen__top, .c-screen__bottom  {
@@ -51,74 +61,64 @@ body {
     font-size: 26px;
 }
 
-#textInputAdd {
-    position: relative;
-    top: 10px;
-    font-weight: 300;
-    font-size: 14px;
-    line-height: 18px;
-    pointer-events: none;
-    color: #505050;
-}
-
 .c-screen__chat {
     margin-top: 100px;
     margin-bottom: 90px;
     width: 100%;
 }
 
-.msg {
+.c-login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background-color: #FFFFFF;
     width: 100%;
-    min-height: 40px;
-    margin: 6px 0px;
-    border-radius: 2px;
-
-    display: flex;
-    align-items: center;
-
+    height: 100%;
 }
 
-.message {
-    background: #FFFFFF;
+.c-login__logo {
+    position: absolute;
+    top: 15%;
+    left: center;
+    height: 92px;
+    width: 130px;
 }
 
-.status {
-    background: #DCDCDC;
+.c-login__loader {
+    width: 70px;
 }
 
-.private_message {
-    background: #FFDEDE;
-}
-
-.msg-hour {
-    color: #AAAAAA;
-}
-
-.msg p {
-    width: 375px;
-
-    padding: 10px 8px;
-    word-wrap: break-word;
-
-}
-
-input[type='text'], input:focus {
-    width: 97%;
-    height: 50%;
-    font-style: italic;
+.c-login__input {
+    width: 261px;
+    height: 54px;
+    text-align: center;
     font-size: 18px;
-    box-shadow: 0 0 0 0;
-    border: 0 none;
-    outline: 0;
-    color: #000000;
-    
+
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    border-radius: 4px;
+
+    margin: 20px;
 }
 
-button {
-    border: 0px;
-    background: #FFFFFF;
-    cursor: pointer;
+.c-login__button {
+    width: 109px;
+    height: 45px;
 
+    background-color: black;
+    background: #E7E7E7;
+    border-radius: 9px;
+}
+
+.c-login ::-webkit-input-placeholder  { 
+    text-align: center;     
+}
+
+.c-menu__icon {
+    color: #28BB25;
+    font-size: 20px;
+    margin: 0 10px;
 }
 
 .c-menu__dark-bg {
@@ -185,82 +185,61 @@ button {
     margin-right: 20px;
 }
 
-.is-shrunken {
-    max-width: 0;
+.c-screen__input-value {
+    position: relative;
+    top: 10px;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    pointer-events: none;
+    color: #505050;
 }
 
-.display-on {
+.c-screen__message {
+    width: 100%;
+    min-height: 40px;
+    margin: 6px 0px;
+    border-radius: 2px;
+
     display: flex;
     align-items: center;
+
 }
 
-.c-menu__icon {
-    color: #28BB25;
-    font-size: 20px;
-    margin: 0 10px;
+.c-screen__hour {
+    color: #AAAAAA;
 }
 
-.is-selected {
-    display: initial !important;
+.c-screen__message p {
+    width: 375px;
+
+    padding: 10px 8px;
+    word-wrap: break-word;
+
 }
 
-.stop {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.c-screen_input[type='text'], input:focus {
+    width: 97%;
+    height: 50%;
+    font-style: italic;
+    font-size: 18px;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    color: #000000;
+    
 }
 
-.is-hidden {
-    display: none;
-}
-
-.c-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    background-color: #FFFFFF;
-    width: 100%;
-    height: 100%;
-}
-
-.c-login__logo {
-    position: absolute;
-    top: 15%;
-    left: center;
-    height: 92px;
-    width: 130px;
-}
-
-.c-login__loader {
-    width: 70px;
-}
-
-.c-login input {
-    width: 261px;
-    height: 54px;
-    text-align: center;
-
+.u-message {
     background: #FFFFFF;
-    border: 1px solid #D7D7D7;
-    border-radius: 4px;
-
-    margin: 20px;
 }
 
-.c-login button {
-    width: 109px;
-    height: 45px;
-
-    background-color: black;
-    background: #E7E7E7;
-    border-radius: 9px;
+.u-status {
+    background: #DCDCDC;
 }
 
-.c-login ::-webkit-input-placeholder  { 
-    text-align: center;     
+.u-private_message {
+    background: #FFDEDE;
 }
 
 .u-total-centralized {
@@ -270,6 +249,22 @@ button {
     flex-direction: column;
 }
 
-b {
-    font-weight: 700;
+.is-shrunken {
+    max-width: 0;
+}
+
+.is-selected {
+    display: initial !important;
+}
+
+.is-freezed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.is-hidden {
+    display: none;
 }

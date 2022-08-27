@@ -113,21 +113,21 @@ function createMSM(msm, number) {
 
     if (msm.type === 'status') {
         blabla = `
-        <div class="msg ${msm.type}" id="msm${number}">
+        <div class="c-screen__message u-${msm.type}" id="msm${number}">
             <p>
-                <span class="msg-hour">${msm.time}</span>
-                <span class="msg-user"><b>${msm.from}</b></span>
-                <span class="msg-text">${msm.text}</span>
+                <span class="c-screen__hour">${msm.time}</span>
+                <span><b>${msm.from}</b></span>
+                <span>${msm.text}</span>
             </p>
         </div>
         `    
     } else {
         blabla = `
-        <div class="msg ${msm.type}" id="msm${number}">
+        <div class="c-screen__message u-${msm.type}" id="msm${number}">
             <p>
-                <span class="msg-hour">${msm.time}</span>
-                <span class="msg-user"><b>${msm.from}</b> para <b>${msm.to}</b>: </span>
-                <span class="msg-text">${msm.text}</span>
+                <span class="c-screen__hour">${msm.time}</span>
+                <span><b>${msm.from}</b> para <b>${msm.to}</b>: </span>
+                <span>${msm.text}</span>
             </p>
         </div>
         `
@@ -256,12 +256,12 @@ document.documentElement.onclick = function(event){
 
         blable.classList.remove("is-shrunken");
         blabla.classList.remove("is-shrunken");
-        blibli.classList.add('stop');
+        blibli.classList.add('is-freezed');
         
     } else if (event.target === blabla){
 
         blable.classList.add("is-shrunken");
         blabla.classList.add("is-shrunken");
-        blibli.classList.remove('stop');
+        blibli.classList.remove('is-freezed');
     }
 }
