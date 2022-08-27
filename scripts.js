@@ -140,39 +140,49 @@ function downloadUsersOnline(allUsers) {
 }
 
 function renderMessage(message, number) {
+    const toMessagePrivate = (message.type === 'private_message' && (message.to === userName || message.from === userName));
     const screenChat = document.querySelector('.js-screen__chat');
     let templateMessage = '';
+    let lastMessageInScreen = '';
+
+    templateMessageStatus = `
+    <div class="c-screen__message u-${message.type}" id="js-message${number}">
+        <p>
+            <span class="c-screen__hour">${message.time}</span>
+            <span><b>${message.from}</b></span>
+            <span>${message.text}</span>
+        </p>
+    </div>
+    `
+    templateMessage = `
+    <div class="c-screen__message u-${message.type}" id="js-message${number}">
+        <p>
+            <span class="c-screen__hour">${message.time}</span>
+            <span><b>${message.from}</b> para <b>${message.to}</b>: </span>
+            <span>${message.text}</span>
+        </p>
+    </div>
+    `
     
     if (number === 0) {
         screenChat.innerHTML = '';
     }
 
     if (message.type === 'status') {
-        templateMessage = `
-        <div class="c-screen__message u-${message.type}" id="js-message${number}">
-            <p>
-                <span class="c-screen__hour">${message.time}</span>
-                <span><b>${message.from}</b></span>
-                <span>${message.text}</span>
-            </p>
-        </div>
-        `    
-    } else {
-        templateMessage = `
-        <div class="c-screen__message u-${message.type}" id="js-message${number}">
-            <p>
-                <span class="c-screen__hour">${message.time}</span>
-                <span><b>${message.from}</b> para <b>${message.to}</b>: </span>
-                <span>${message.text}</span>
-            </p>
-        </div>
-        `
+        screenChat.innerHTML += templateMessageStatus
+        lastMessageInScreen = document.getElementById(`js-message${number}`)
+        lastMessageInScreen.scrollIntoView();
+
+    } else if (message.type !== 'private_message') {
+        screenChat.innerHTML += templateMessage
+        lastMessageInScreen = document.getElementById(`js-message${number}`)
+        lastMessageInScreen.scrollIntoView();
+
+    } else if (toMessagePrivate) {
+        screenChat.innerHTML += templateMessage
+        lastMessageInScreen = document.getElementById(`js-message${number}`)
+        lastMessageInScreen.scrollIntoView();
     }
-
-    screenChat.innerHTML += templateMessage
-
-    const lastMessageInScreen = document.getElementById(`js-message${number}`)
-    lastMessageInScreen.scrollIntoView();
 }
 
 function renderUserInMenu(users, number) {
