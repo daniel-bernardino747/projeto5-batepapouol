@@ -13,11 +13,12 @@ body {
     font-size: 14px;
     line-height: 18px;
 
+
     background: #F3F3F3;
 
 }
 
-.top, .bottom {
+.c-screen__top, .c-screen__bottom  {
     position: fixed;
     z-index: 1;
     left: 0;
@@ -32,21 +33,21 @@ body {
     align-items: center;
 }
 
-.top {
+.c-screen__top {
     top: 0;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.top ion-icon {
+.c-screen__top ion-icon {
     font-size: 45px;
 }
 
-.bottom {
+.c-screen__bottom  {
     bottom: 0;
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
 }
 
-.bottom ion-icon {
+.c-screen__bottom ion-icon {
     font-size: 26px;
 }
 
@@ -60,7 +61,7 @@ body {
     color: #505050;
 }
 
-.box-msg {
+.c-screen__chat {
     margin-top: 100px;
     margin-bottom: 90px;
     width: 100%;
@@ -74,6 +75,7 @@ body {
 
     display: flex;
     align-items: center;
+
 }
 
 .message {
@@ -93,7 +95,11 @@ body {
 }
 
 .msg p {
+    width: 375px;
+
     padding: 10px 8px;
+    word-wrap: break-word;
+
 }
 
 input[type='text'], input:focus {
@@ -115,7 +121,7 @@ button {
 
 }
 
-.screen-dark {
+.c-menu__dark-bg {
     position: fixed;
     top: 0;
     right: 0;
@@ -130,7 +136,7 @@ button {
     transition: max-width 1s ease-in-out;
 }
 
-.menu {
+.c-menu {
     position: absolute;
     top: 0;
     right: 0;
@@ -143,7 +149,7 @@ button {
     max-width: 80%;
     transition: max-width 1s ease-in-out;
 }
-.menu h1 {
+.c-menu h1 {
     padding: 0 100px;
     margin: 25px 0;
 
@@ -157,31 +163,30 @@ button {
     justify-content: center;
 }
 
-.options {
+.c-menu__selection {
     line-height: 8px;
     font-size: 16px;
 }
 
-.options div {
+.c-menu__selection div {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin: 10px 20px;
 }
 
-.options div div {
+.c-menu__selection div div {
     margin: 0 0;
 }
 
-.options div div ion-icon {
+.c-menu__selection div div ion-icon {
     font-size: 25px;
     margin-left: 10px;
     margin-right: 20px;
 }
 
-.hide {
+.is-shrunken {
     max-width: 0;
-    pointer-events: none;
 }
 
 .display-on {
@@ -189,15 +194,14 @@ button {
     align-items: center;
 }
 
-.green {
+.c-menu__icon {
     color: #28BB25;
     font-size: 20px;
     margin: 0 10px;
-    display: none;
 }
 
-.selecionado {
-    display: initial;
+.is-selected {
+    display: initial !important;
 }
 
 .stop {
@@ -208,11 +212,11 @@ button {
     overflow: hidden;
 }
 
-.hidden {
+.is-hidden {
     display: none;
 }
 
-.login {
+.c-login {
     position: fixed;
     top: 0;
     left: 0;
@@ -222,7 +226,7 @@ button {
     height: 100%;
 }
 
-.login .logo {
+.c-login__logo {
     position: absolute;
     top: 15%;
     left: center;
@@ -230,11 +234,11 @@ button {
     width: 130px;
 }
 
-.load {
+.c-login__loader {
     width: 70px;
 }
 
-.login input {
+.c-login input {
     width: 261px;
     height: 54px;
     text-align: center;
@@ -246,7 +250,7 @@ button {
     margin: 20px;
 }
 
-.login button {
+.c-login button {
     width: 109px;
     height: 45px;
 
@@ -255,13 +259,17 @@ button {
     border-radius: 9px;
 }
 
-.login ::-webkit-input-placeholder  { 
+.c-login ::-webkit-input-placeholder  { 
     text-align: center;     
 }
 
-.in-center {
+.u-total-centralized {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+b {
+    font-weight: 700;
 }

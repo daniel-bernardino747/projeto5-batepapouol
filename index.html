@@ -2,84 +2,115 @@
 <html lang="pt-br">
 
 <head>
+    <!-- configurações da página -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bate-papo UOL</title>
 
+    <!-- Importações de estilos -->
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
 </head>
 
 <body>
 
-    <div class="login in-center">
-        <img src="./src/logo.png" class='logo'alt="">
-        <div class="in-center box-input">
-            <input id="name"type="text" placeholder="Digite seu nome">
-            <button onclick="start()">Entrar</button>
+    <!-- tela de login no servidor -->
+    <div class="c-login u-total-centralized js-login">
+
+        <img src="./src/logo.png" class="c-login__logo" alt="login__logo" />
+
+        <div class="js-login__input u-total-centralized">
+            <input type="text" class="js-login__name" placeholder="Digite seu nome" />
+            <button onclick="registerAndLogin()">Entrar</button>
         </div>
-        <div class='load hidden'>
-            <img class='load' src="./src/loading-loader.gif" alt="">
+
+        <div class="js-login__loader is-hidden">
+            <img src="./src/loading-loader.gif" class="c-login__loader" alt="login__loader" />
         </div>
+
     </div>
+    <!-- /tela de login no servidor -->
 
+    <!-- fundo escuro do menu -->
+    <div class="c-menu__dark-bg js-menu__background is-shrunken"></div>
 
-    <div class="screen-dark hide"></div>
-    <div class="menu hide">
+    <!-- menu -->
+    <div class="c-menu js-menu is-shrunken">
+
+        <!-- opções de destinatário -->
         <div>
             <h1>Escolha um contato para enviar mensagem:</h1>
-            <div class="options one"></div>
+
+            <div class="c-menu__selection js-menu__users"></div>
         </div>
+        <!-- /opções de destinatário -->
+
+        <!-- opções de visibilidade -->
         <div>
             <h1>Escolha a visibilidade:</h1>
-            <div class="options two">
-                <div data-identifier="visibility" onclick="select('op1', 'two')">
+
+            <div class="c-menu__selection js-menu__visibility">
+
+                <div data-identifier="visibility" onclick="selectedMenuItem('js-option1', 'js-menu__visibility')">
                     <div>
-                        <ion-icon id="public" name="lock-open"></ion-icon>
+                        <ion-icon name="lock-open"></ion-icon>
                         <p>Público</p>
                     </div>
-                    <ion-icon class='green op1' name="checkmark-outline"></ion-icon>
+                    <ion-icon class="c-menu__icon is-hidden is-selected js-option1" name="checkmark-outline"></ion-icon>
                 </div>
-                <div data-identifier="visibility" onclick="select('op2', 'two')">
+
+                <div data-identifier="visibility" onclick="selectedMenuItem('js-option2', 'js-menu__visibility')">
                     <div>
-                        <ion-icon id="private" name="lock-closed"></ion-icon>
+                        <ion-icon name="lock-closed"></ion-icon>
                         <p>Reservadamente</p>
                     </div>
-                    <ion-icon class='green op2' name="checkmark-outline"></ion-icon>
+                    <ion-icon class="c-menu__icon is-hidden js-option2" name="checkmark-outline"></ion-icon>
                 </div>
+
             </div>
+
         </div>
+        <!-- /opções de visibilidade -->
+
     </div>
+    <!-- /menu -->
 
+    <!-- tela do bate-papo -->
+    <div class="c-screen">
 
-
-
-    <div class="screen">
-
-        <div class="top">
+        <div class="c-screen__top">
             <img src="./src/logo.png" alt="logo-uol" />
-            <ion-icon name="people" id="menu"></ion-icon>
+            <ion-icon name="people" id="js-screen__icon-menu"></ion-icon>
         </div>
 
-        <div class="box-msg"></div>
+        <div class="c-screen__chat js-screen__chat"></div>
 
-        <div class="bottom">
+        <div class="c-screen__bottom">
+
             <div>
-                <input type="text" class="mensage" placeholder="Escreva aqui...">
-                <p id="textInputAdd" class="hidden">Enviando para Todos (reservadamente)</p>
+                <input type="text" class="c-screen_input" placeholder="Escreva aqui...">
+                <p id="js-screen__input-value" class="is-hidden">Enviando para Todos (reservadamente)</p>
             </div>
-            <button id="button-enter" onclick="sendMSM('.mensage')">
+
+            <button id="js-screen__button" onclick="sendMSM('.c-screen_input')">
                 <ion-icon name='paper-plane-outline'></ion-icon>
             </button>
+
         </div>
     </div>
+    <!-- /tela do bate-papo -->
 
+
+    <!-- axios -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- icons -->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    
+    <!-- javascripts -->
     <script src="scripts.js"></script>
-    <script src="scrip"></script>
 </body>
 
 </html>

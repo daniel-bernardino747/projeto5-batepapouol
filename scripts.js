@@ -1,18 +1,18 @@
 let nameInput = '';
-function start() {
-    nameInput = document.getElementById('name').value;
+function registerAndLogin() {
+    nameInput = document.querySelector('.js-login__name').value;
     console.log(nameInput)
-    const login = document.querySelector('.login');
-    const box = document.querySelector('.box-input');
-    const loading = document.querySelector('.load');
-    box.classList.remove('in-center')
-    box.classList.add('hidden');
-    loading.classList.remove('hidden');
+    const login = document.querySelector('.js-login');
+    const box = document.querySelector('.js-login__input');
+    const loading = document.querySelector('.js-login__loader');
+    box.classList.remove('u-total-centralized')
+    box.classList.add('is-hidden');
+    loading.classList.remove('is-hidden');
     makePost('cadastro', "https://mock-api.driven.com.br/api/v6/uol/participants", {name: nameInput});
     
     setTimeout(() => {
-        login.classList.remove('in-center')
-        login.classList.add('hidden')
+        login.classList.remove('u-total-centralized')
+        login.classList.add('is-hidden')
     }, 3000);
 
 
@@ -104,22 +104,35 @@ function sendMSM(classInput) {
 }
 
 function createMSM(msm, number) {
-    const box = document.querySelector('.box-msg');
+    const box = document.querySelector('.js-screen__chat');
+    let blabla = '';
     
     if (number === 0) {
         box.innerHTML = '';
     }
 
-
-    const blabla = `
+    if (msm.type === 'status') {
+        blabla = `
         <div class="msg ${msm.type}" id="msm${number}">
             <p>
                 <span class="msg-hour">${msm.time}</span>
-                <span class="msg-user">${msm.from} para ${msm.to}: </span>
+                <span class="msg-user"><b>${msm.from}</b></span>
+                <span class="msg-text">${msm.text}</span>
+            </p>
+        </div>
+        `    
+    } else {
+        blabla = `
+        <div class="msg ${msm.type}" id="msm${number}">
+            <p>
+                <span class="msg-hour">${msm.time}</span>
+                <span class="msg-user"><b>${msm.from}</b> para <b>${msm.to}</b>: </span>
                 <span class="msg-text">${msm.text}</span>
             </p>
         </div>
         `
+    }
+
     box.innerHTML += blabla
 
     const ble = document.getElementById(`msm${number}`)
@@ -127,27 +140,27 @@ function createMSM(msm, number) {
 }
 
 function insertUserInMenu(users, number) {
-    const menu = document.querySelector('.one');
+    const menu = document.querySelector('.js-menu__users');
 
     if (number === 0) {
         menu.innerHTML = `
-        <div onclick="select('op', 'one')">
+        <div onclick="selectedMenuItem('js-optionAll', 'js-menu__users')">
             <div>
                 <ion-icon name="people"></ion-icon>
                 <p>Todos</p>
             </div>
-            <ion-icon class='green op selecionado' name="checkmark-outline"></ion-icon>
+            <ion-icon class='c-menu__icon is-hidden js-optionAll is-selected' name="checkmark-outline"></ion-icon>
         </div>
         `;
     }
 
     const blabla = `
-    <div data-identifier="participant" onclick="select('op${number}', 'one')">
+    <div data-identifier="participant" onclick="selectedMenuItem('js-option${number}', 'js-menu__users')">
         <div>
             <ion-icon name="person-circle"></ion-icon>
             <p>${users.name}</p>
         </div>
-        <ion-icon class='green op${number}' name="checkmark-outline"></ion-icon>
+        <ion-icon class='c-menu__icon is-hidden js-option${number}' name="checkmark-outline"></ion-icon>
     </div>
     `;
 
@@ -179,7 +192,7 @@ function downloadUsers(allUsers) {
 document.addEventListener("keypress", function(e) {
     if(e.key === 'Enter') {
     
-        let btn = document.getElementById("button-enter");
+        let btn = document.getElementById("js-screen__button");
       
       btn.click();
     
@@ -187,42 +200,50 @@ document.addEventListener("keypress", function(e) {
 });
 
 
-const blabla = document.querySelector('.screen-dark');
-const blibli = document.querySelector('.box-msg');
-const blable = document.querySelector('.menu');
-const icon = document.getElementById('menu');
-const textInInputAdd = document.getElementById('textInputAdd');
+const blabla = document.querySelector('.js-menu__background');
+const blibli = document.querySelector('.js-screen__chat');
+const blable = document.querySelector('.js-menu');
+const icon = document.getElementById('js-screen__icon-menu');
+const textInInputAdd = document.getElementById('js-screen__input-value');
 
 
-function select(element, family) {
-    const selected = document.querySelector(`.${family} .selecionado`);
+function selectedMenuItem(element, family) {
+    const selected = document.querySelector(`.${family} .is-selected`);
     
     if (selected !== null) {
-        selected.classList.remove("selecionado");
+        selected.classList.remove("is-selected");
     }
     
     const selector = `.${family} .${element}`;
     const button = document.querySelector(selector);
-    button.classList.add('selecionado');
+    button.classList.add('is-selected');
 
-    if (family === 'one') {
-        const select = document.querySelector(`.${family} .selecionado`);
+    if (family === 'js-menu__users') {
+
+        const select = document.querySelector(`.${family} .is-selected`);
         const pai = select.parentNode
+
         nameToSendMessage = pai.innerText;
         textInInputAdd.innerHTML = `Enviando para ${nameToSendMessage} (reservadamente)`;
-    } else if (family === 'two') {
-        const nhami = document.querySelector(`.${family} .selecionado`);
+
+    } else if (family === 'js-menu__visibility') {
+
+        const nhami = document.querySelector(`.${family} .is-selected`);
         const nhamii = nhami.parentNode.innerText
+
         if (nhamii === 'Público') {
+
             statusMessage = 'message';
-            textInInputAdd.classList.remove('selecionado');
-            textInInputAdd.classList.add('hidden');
+
+            textInInputAdd.classList.remove('is-selected');
+            textInInputAdd.classList.add('is-hidden');
 
         } else if (nhamii === 'Reservadamente') {
+
             statusMessage = 'private_message';
             
-            textInInputAdd.classList.remove('hidden');
-            textInInputAdd.classList.add('selecionado');
+            textInInputAdd.classList.remove('is-hidden');
+            textInInputAdd.classList.add('is-selected');
             console.log(textInInputAdd);
         }
     }
@@ -233,14 +254,14 @@ document.documentElement.onclick = function(event){
 
     if (event.target === icon) {
 
-        blable.classList.remove("hide");
-        blabla.classList.remove("hide");
+        blable.classList.remove("is-shrunken");
+        blabla.classList.remove("is-shrunken");
         blibli.classList.add('stop');
         
     } else if (event.target === blabla){
 
-        blable.classList.add("hide");
-        blabla.classList.add("hide");
+        blable.classList.add("is-shrunken");
+        blabla.classList.add("is-shrunken");
         blibli.classList.remove('stop');
     }
 }
