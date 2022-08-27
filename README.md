@@ -10,7 +10,7 @@ Durante o decorrer deste readme, irei mostrar os detalhes do código, facilitand
 
 Sem mais delongas:
 
-<details><summary>## Tela de login</summary>
+<details><summary><h1>Tela de login</h1></summary>
 
 <p>
 Uma interface que possui um input e um botão, perguntando e conferindo se o nome do usuário é válido para aquele chat. Logo depois, há uma tela de loading de 5s antes de entrar no chat.
