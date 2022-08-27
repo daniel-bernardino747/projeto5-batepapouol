@@ -5,135 +5,66 @@
 }
 
 body {
+    background: #F3F3F3;
     width: 375px;
-
+    
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
-
-    background: #F3F3F3;
-
 }
 
 button {
+    background: #FFFFFF;
     border: 0px;
-    background: #FFFFFF;
     cursor: pointer;
-
 }
 
-b {
-    font-weight: 700;
-}
-
-.c-screen__top, .c-screen__bottom  {
-    position: fixed;
-    z-index: 1;
-    left: 0;
-
-    width: 100%;
-    height: 80px;
-    padding: 0 21px;
-    background: #FFFFFF;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.c-screen__top {
-    top: 0;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.c-screen__top ion-icon {
-    font-size: 45px;
-}
-
-.c-screen__bottom  {
-    bottom: 0;
-    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.c-screen__bottom ion-icon {
-    font-size: 26px;
-}
-
-.c-screen__chat {
-    margin-top: 100px;
-    margin-bottom: 90px;
-    width: 100%;
-}
+b { font-weight: 700; }
 
 .c-login {
     position: fixed;
-    top: 0;
     left: 0;
+    top: 0;
     z-index: 5;
+
     background-color: #FFFFFF;
-    width: 100%;
     height: 100%;
+    width: 100%;
 }
 
 .c-login__logo {
     position: absolute;
-    top: 15%;
     left: center;
+    top: 15%;
+
     height: 92px;
     width: 130px;
 }
 
-.c-login__loader {
-    width: 70px;
-}
+.c-login__loader { width: 70px; }
 
 .c-login__input {
-    width: 261px;
-    height: 54px;
-    text-align: center;
-    font-size: 18px;
-
     background: #FFFFFF;
     border: 1px solid #D7D7D7;
     border-radius: 4px;
-
     margin: 20px;
+    height: 54px;
+    width: 261px;
+
+    font-size: 18px;
+    text-align: center;
 }
 
-.c-login__button {
-    width: 109px;
-    height: 45px;
+.c-login ::-webkit-input-placeholder { text-align: center; }
 
+.c-login__button {
     background-color: black;
     background: #E7E7E7;
     border-radius: 9px;
-}
-
-.c-login ::-webkit-input-placeholder  { 
-    text-align: center;     
-}
-
-.c-menu__icon {
-    color: #28BB25;
-    font-size: 20px;
-    margin: 0 10px;
-}
-
-.c-menu__dark-bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    width: 100%;
-    height: 667px;
-
-    background: rgba(0, 0, 0, 0.6);
-
-    overflow: hidden;
-    max-width: 100%;
-    transition: max-width 1s ease-in-out;
+    height: 45px;
+    width: 109px;
 }
 
 .c-menu {
@@ -141,17 +72,34 @@ b {
     top: 0;
     right: 0;
     z-index: 2;
-    width: 80%;
-    height: 1000px;
-    background-color: #FFFFFF;
 
-    overflow: hidden;
+    background-color: #FFFFFF;
+    height: 1000px;
+    width: 80%;
     max-width: 80%;
+
     transition: max-width 1s ease-in-out;
+    overflow: hidden;
 }
+
+.c-menu__dark-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 2;
+
+    background: rgba(0, 0, 0, 0.6);
+    height: 667px;
+    width: 100%;
+    max-width: 100%;
+
+    transition: max-width 1s ease-in-out;
+    overflow: hidden;
+}
+
 .c-menu h1 {
-    padding: 0 100px;
     margin: 25px 0;
+    padding: 0 100px;
 
     font-weight: 700;
     font-size: 16px;
@@ -164,107 +112,140 @@ b {
 }
 
 .c-menu__selection {
-    line-height: 8px;
     font-size: 16px;
+    line-height: 8px;
 }
 
 .c-menu__selection div {
+    margin: 10px 20px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin: 10px 20px;
 }
 
-.c-menu__selection div div {
-    margin: 0 0;
-}
+.c-menu__selection div div { margin: 0 0; }
 
 .c-menu__selection div div ion-icon {
-    font-size: 25px;
     margin-left: 10px;
     margin-right: 20px;
+
+    font-size: 25px;
 }
+
+.c-menu__icon {
+    color: #28BB25;
+    margin: 0 10px;
+
+    font-size: 20px;
+}
+
+.c-screen__top, .c-screen__bottom  {
+    position: fixed;
+    left: 0;
+    z-index: 1;
+
+    background: #FFFFFF;
+    height: 80px;
+    padding: 0 21px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.c-screen__top {
+    top: 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.c-screen__bottom  {
+    bottom: 0;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.c-screen__top ion-icon { font-size: 45px; }
+
+
+.c-screen__bottom ion-icon { font-size: 26px; }
+
+.c-screen__chat {
+    margin-bottom: 90px;
+    margin-top: 100px;
+    width: 100%;
+}
+
+.c-screen__message {
+    border-radius: 2px;
+    margin: 6px 0px;
+    min-height: 40px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+}
+
+.c-screen__message p {
+    padding: 10px 8px;
+    width: 375px;
+
+    word-wrap: break-word;
+}
+
+.c-screen__hour { color: #AAAAAA; }
 
 .c-screen__input-value {
     position: relative;
     top: 10px;
+    
+    color: #505050;
+
     font-weight: 300;
     font-size: 14px;
     line-height: 18px;
+    
     pointer-events: none;
-    color: #505050;
-}
-
-.c-screen__message {
-    width: 100%;
-    min-height: 40px;
-    margin: 6px 0px;
-    border-radius: 2px;
-
-    display: flex;
-    align-items: center;
-
-}
-
-.c-screen__hour {
-    color: #AAAAAA;
-}
-
-.c-screen__message p {
-    width: 375px;
-
-    padding: 10px 8px;
-    word-wrap: break-word;
-
 }
 
 .c-screen_input[type='text'], input:focus {
-    width: 97%;
     height: 50%;
-    font-style: italic;
-    font-size: 18px;
+    width: 97%;
+    
     box-shadow: 0 0 0 0;
     border: 0 none;
-    outline: 0;
     color: #000000;
+    outline: 0;
     
-}
-
-.u-message {
-    background: #FFFFFF;
-}
-
-.u-status {
-    background: #DCDCDC;
-}
-
-.u-private_message {
-    background: #FFDEDE;
+    font-size: 18px;
+    font-style: italic;
 }
 
 .u-total-centralized {
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
 }
 
-.is-shrunken {
-    max-width: 0;
-}
+.u-message { background: #FFFFFF; }
 
-.is-selected {
-    display: initial !important;
-}
+.u-private_message { background: #FFDEDE; }
+
+.u-status { background: #DCDCDC; }
 
 .is-freezed {
     position: fixed;
     top: 0;
-    width: 100%;
+
     height: 100%;
+    width: 100%;
+    
     overflow: hidden;
 }
 
-.is-hidden {
-    display: none;
-}
+.is-hidden { display: none; }
+
+.is-selected { display: initial !important; }
+
+.is-shrunken { max-width: 0; }
